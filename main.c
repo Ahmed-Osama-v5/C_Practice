@@ -70,23 +70,23 @@ int getMiddle(List_t* pList)
 
 int main(void)
 {
-	stack_t stack;
-	createArrStack(&stack);
+	linkedStack_t stack;
+	createLinkStack(&stack);
 
-	StackArr_Push(&stack, 12);
-	StackArr_Push(&stack, 24);
-	StackArr_Push(&stack, 36);
-	StackArr_Push(&stack, 48);
-	StackArr_Traverse(&stack);
-	StackArr_Pop(&stack);
-	StackArr_Traverse(&stack);
-	StackArr_Pop(&stack);
-	StackArr_Traverse(&stack);
-	StackArr_Pop(&stack);
-	StackArr_Traverse(&stack);
-	StackArr_Pop(&stack);
+	StackLink_Push(&stack, 12);
+	StackLink_Push(&stack, 24);
+	StackLink_Push(&stack, 36);
+	StackLink_Push(&stack, 48);
+	StackLink_Traverse(&stack);
+	StackLink_Pop(&stack);
+	StackLink_Traverse(&stack);
+	StackLink_Pop(&stack);
+	StackLink_Traverse(&stack);
+	StackLink_Pop(&stack);
+	StackLink_Traverse(&stack);
+	StackLink_Pop(&stack);
 
-	printf("stack top: %d\n", StackArr_Top(&stack));
+	printf("stack top: %d\n", StackLink_Top(&stack));
 
 	return 0;
 }

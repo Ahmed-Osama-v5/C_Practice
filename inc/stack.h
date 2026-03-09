@@ -8,7 +8,7 @@
 #ifndef INC_STACK_H_
 #define INC_STACK_H_
 
-#define STACK_MAX_SIZE  3
+#define STACK_MAX_SIZE  (16)
 
 typedef int stackKey_t;
 
@@ -32,6 +32,26 @@ void StackArr_Traverse(stack_t* pStack);
 
 /* Linked based implementation */
 /* *********************************************** */
+
+typedef struct linkedStack
+{
+	stackKey_t data;
+	struct linkedStack *pNextNode;
+}stackNode_t;
+
+typedef struct
+{
+	stackNode_t* pTop;
+	int size;
+}linkedStack_t;
+
+void createLinkStack(linkedStack_t* pStack);
+int StackLink_IsEmpty(linkedStack_t* pStack);
+int StackLink_IsFull(linkedStack_t* pStack);
+void StackLink_Push(linkedStack_t* pStack, stackKey_t key);
+void StackLink_Pop(linkedStack_t* pStack);
+stackKey_t StackLink_Top(linkedStack_t* pStack);
+void StackLink_Traverse(linkedStack_t* pStack);
 
 /* *********************************************** */
 
