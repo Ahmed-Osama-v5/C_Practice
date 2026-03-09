@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
+#include "stack.h"
 
 
 /* Floyd's algorithm */
@@ -69,24 +70,23 @@ int getMiddle(List_t* pList)
 
 int main(void)
 {
-	List_t list;
-	createList(&list);
-	listPushFront(&list, 6);
-	listPushFront(&list, 5);
-	listPushFront(&list, 4);
-	listPushFront(&list, 3);
-	listPushFront(&list, 2);
-	listPushFront(&list, 1);
+	stack_t stack;
+	createArrStack(&stack);
 
-	listAddAfter(&list, 3, 9);
+	StackArr_Push(&stack, 12);
+	StackArr_Push(&stack, 24);
+	StackArr_Push(&stack, 36);
+	StackArr_Push(&stack, 48);
+	StackArr_Traverse(&stack);
+	StackArr_Pop(&stack);
+	StackArr_Traverse(&stack);
+	StackArr_Pop(&stack);
+	StackArr_Traverse(&stack);
+	StackArr_Pop(&stack);
+	StackArr_Traverse(&stack);
+	StackArr_Pop(&stack);
 
-	traverseList(&list);
-
-	listReverse(&list);
-	traverseList(&list);
-
-	printf("list has %s cycle\n", hasCycle(&list) ? "" : "no");
-	printf("list middle is %d\n", getMiddle(&list));
+	printf("stack top: %d\n", StackArr_Top(&stack));
 
 	return 0;
 }
