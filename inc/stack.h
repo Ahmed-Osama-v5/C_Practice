@@ -24,7 +24,7 @@ void createArrStack(stack_t* pStack);
 int StackArr_IsEmpty(stack_t* pStack);
 int StackArr_IsFull(stack_t* pStack);
 void StackArr_Push(stack_t* pStack, stackKey_t key);
-void StackArr_Pop(stack_t* pStack);
+stackKey_t StackArr_Pop(stack_t* pStack);
 stackKey_t StackArr_Top(stack_t* pStack);
 void StackArr_Traverse(stack_t* pStack);
 
@@ -49,7 +49,7 @@ void createLinkStack(linkedStack_t* pStack);
 int StackLink_IsEmpty(linkedStack_t* pStack);
 int StackLink_IsFull(linkedStack_t* pStack);
 void StackLink_Push(linkedStack_t* pStack, stackKey_t key);
-void StackLink_Pop(linkedStack_t* pStack);
+stackKey_t StackLink_Pop(linkedStack_t* pStack);
 stackKey_t StackLink_Top(linkedStack_t* pStack);
 void StackLink_Traverse(linkedStack_t* pStack);
 

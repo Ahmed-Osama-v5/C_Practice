@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "list.h"
 #include "stack.h"
+#include "queue.h"
 
 
 /* Floyd's algorithm */
@@ -70,23 +71,19 @@ int getMiddle(List_t* pList)
 
 int main(void)
 {
-	linkedStack_t stack;
-	createLinkStack(&stack);
+	queue_t queue;
+	createArrQueue(&queue);
+	QueueArr_Enqueue(&queue, 2);
+	QueueArr_Enqueue(&queue, 4);
+	QueueArr_Enqueue(&queue, 6);
 
-	StackLink_Push(&stack, 12);
-	StackLink_Push(&stack, 24);
-	StackLink_Push(&stack, 36);
-	StackLink_Push(&stack, 48);
-	StackLink_Traverse(&stack);
-	StackLink_Pop(&stack);
-	StackLink_Traverse(&stack);
-	StackLink_Pop(&stack);
-	StackLink_Traverse(&stack);
-	StackLink_Pop(&stack);
-	StackLink_Traverse(&stack);
-	StackLink_Pop(&stack);
-
-	printf("stack top: %d\n", StackLink_Top(&stack));
+	printf("Queue front: %d\n", QueuekArr_Front(&queue));
+	printf("Pop front: %d\n", QueueArr_Dequeue(&queue));
+	printf("Queue front: %d\n", QueuekArr_Front(&queue));
+	printf("Pop front: %d\n", QueueArr_Dequeue(&queue));
+	printf("Queue front: %d\n", QueuekArr_Front(&queue));
+	printf("Pop front: %d\n", QueueArr_Dequeue(&queue));
+	printf("Queue front: %d\n", QueuekArr_Front(&queue));
 
 	return 0;
 }

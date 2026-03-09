@@ -72,13 +72,14 @@ void StackArr_Push(stack_t* pStack, stackKey_t key)
 	}
 }
 
-void StackArr_Pop(stack_t* pStack)
+stackKey_t StackArr_Pop(stack_t* pStack)
 {
+	stackKey_t retVal = 0;
 	if(pStack != NULL)
 	{
 		if(! StackArr_IsEmpty(pStack))
 		{
-			pStack->stackTop--;
+			retVal = pStack->data[pStack->stackTop--];
 		}
 		else
 		{
@@ -89,6 +90,7 @@ void StackArr_Pop(stack_t* pStack)
 	{
 		printf("StackArr_Pop(): error: stack ptr is NULL\n");
 	}
+	return retVal;
 }
 
 stackKey_t StackArr_Top(stack_t* pStack)
@@ -211,13 +213,15 @@ void StackLink_Push(linkedStack_t* pStack, stackKey_t key)
 	}
 }
 
-void StackLink_Pop(linkedStack_t* pStack)
+stackKey_t StackLink_Pop(linkedStack_t* pStack)
 {
+	stackKey_t retVal = 0;
 	if(pStack != NULL)
 	{
 		if(! StackLink_IsEmpty(pStack))
 		{
 			stackNode_t* pTmpNode = pStack->pTop;
+			retVal = pTmpNode->data;
 
 			pStack->pTop = pTmpNode->pNextNode;
 			pStack->size--;
@@ -231,6 +235,7 @@ void StackLink_Pop(linkedStack_t* pStack)
 	{
 		printf("StackLink_Pop(): error: stack ptr is NULL\n");
 	}
+	return retVal;
 }
 
 stackKey_t StackLink_Top(linkedStack_t* pStack)
