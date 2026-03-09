@@ -21,7 +21,7 @@ void createArrStack(stack_t* pStack)
 	}
 	else
 	{
-		printf("createArrStack(): error: list ptr is NULL\n");
+		printf("createArrStack(): error: stack ptr is NULL\n");
 	}
 }
 
@@ -34,7 +34,7 @@ int StackArr_IsEmpty(stack_t* pStack)
 	}
 	else
 	{
-		printf("StackArr_IsEmpty(): error: list ptr is NULL\n");
+		printf("StackArr_IsEmpty(): error: stack ptr is NULL\n");
 	}
 	return retVal;
 }
@@ -48,7 +48,7 @@ int StackArr_IsFull(stack_t* pStack)
 	}
 	else
 	{
-		printf("StackArr_IsFull(): error: list ptr is NULL\n");
+		printf("StackArr_IsFull(): error: stack ptr is NULL\n");
 	}
 	return retVal;
 }
@@ -68,7 +68,7 @@ void StackArr_Push(stack_t* pStack, stackKey_t key)
 	}
 	else
 	{
-		printf("StackArr_Push(): error: list ptr is NULL\n");
+		printf("StackArr_Push(): error: stack ptr is NULL\n");
 	}
 }
 
@@ -87,7 +87,7 @@ void StackArr_Pop(stack_t* pStack)
 	}
 	else
 	{
-		printf("StackArr_Pop(): error: list ptr is NULL\n");
+		printf("StackArr_Pop(): error: stack ptr is NULL\n");
 	}
 }
 
@@ -105,7 +105,7 @@ stackKey_t StackArr_Top(stack_t* pStack)
 	}
 	else
 	{
-		printf("StackArr_Top(): error: list ptr is NULL\n");
+		printf("StackArr_Top(): error: stack ptr is NULL\n");
 	}
 	return retVal;
 }
@@ -128,58 +128,59 @@ void StackArr_Traverse(stack_t* pStack)
 	}
 	else
 	{
-		printf("StackArr_Traverse(): error: list ptr is NULL\n");
+		printf("StackArr_Traverse(): error: stack ptr is NULL\n");
 	}
 }
 
 /* *********************************************** */
 
 
-/* Array based implementation */
+/* Linked based implementation */
 /* *********************************************** */
 
 void createLinkStack(linkedStack_t* pStack)
 {
-	pStack->pTop = NULL;
-	pStack->size = 0;
+	if(pStack != NULL)
+	{
+		pStack->pTop = NULL;
+		pStack->size = 0;
+	}
+	else
+	{
+		printf("createLinkStack(): error: stack ptr is NULL\n");
+	}
 }
 
 int StackLink_IsEmpty(linkedStack_t* pStack)
 {
-	stackKey_t retVal = 0;
+	int retVal = 0;
 	if(pStack != NULL)
 	{
 		if(pStack->size <= 0)
-		{
-			printf("StackLink_IsEmpty(): stack is empty\n");
 			retVal = 1;
-		}
 		else
 			retVal = 0;
 	}
 	else
 	{
-		printf("StackLink_IsEmpty(): error: list ptr is NULL\n");
+		printf("StackLink_IsEmpty(): error: stack ptr is NULL\n");
 	}
 	return retVal;
 }
 
 int StackLink_IsFull(linkedStack_t* pStack)
 {
-	stackKey_t retVal = 0;
+	int retVal = 0;
 	if(pStack != NULL)
 	{
 		if(pStack->size == STACK_MAX_SIZE)
-		{
-			printf("StackLink_IsFull(): stack is full\n");
 			retVal = 1;
-		}
 		else
 			retVal = 0;
 	}
 	else
 	{
-		printf("StackLink_IsFull(): error: list ptr is NULL\n");
+		printf("StackLink_IsFull(): error: stack ptr is NULL\n");
 	}
 	return retVal;
 }
@@ -191,18 +192,22 @@ void StackLink_Push(linkedStack_t* pStack, stackKey_t key)
 		if(! StackLink_IsFull(pStack))
 		{
 			stackNode_t* pNewNode = (stackNode_t*) malloc(sizeof(stackNode_t));
-
-			pNewNode->data = key;
-			pNewNode->pNextNode = pStack->pTop;
-			pStack->pTop = pNewNode;
-			pStack->size++;
+			if(pNewNode != NULL)
+			{
+				pNewNode->data = key;
+				pNewNode->pNextNode = pStack->pTop;
+				pStack->pTop = pNewNode;
+				pStack->size++;
+			}
+			else
+				printf("StackLink_Push(): error: couldn't create new node\n");
 		}
 		else
 			printf("StackLink_Push(): error: stack is full\n");
 	}
 	else
 	{
-		printf("StackLink_Push(): error: list ptr is NULL\n");
+		printf("StackLink_Push(): error: stack ptr is NULL\n");
 	}
 }
 
@@ -224,7 +229,7 @@ void StackLink_Pop(linkedStack_t* pStack)
 	}
 	else
 	{
-		printf("StackLink_Pop(): error: list ptr is NULL\n");
+		printf("StackLink_Pop(): error: stack ptr is NULL\n");
 	}
 }
 
@@ -242,7 +247,7 @@ stackKey_t StackLink_Top(linkedStack_t* pStack)
 	}
 	else
 	{
-		printf("StackLink_Top(): error: list ptr is NULL\n");
+		printf("StackLink_Top(): error: stack ptr is NULL\n");
 	}
 	return retVal;
 }
@@ -265,7 +270,7 @@ void StackLink_Traverse(linkedStack_t* pStack)
 	}
 	else
 	{
-		printf("StackLink_Traverse(): error: list ptr is NULL\n");
+		printf("StackLink_Traverse(): error: stack ptr is NULL\n");
 	}
 }
 
