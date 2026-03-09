@@ -41,7 +41,7 @@ void listAddAfter(List_t* pList, listKey_t afterKey, listKey_t newKey);
 
 void traverseList(List_t* pList);
 
-void ListReverse(List_t* pList);
+void listReverse(List_t* pList);
 
 
 #endif /* LIST_H_ */

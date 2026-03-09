@@ -82,6 +82,9 @@ int main(void)
 
 	traverseList(&list);
 
+	listReverse(&list);
+	traverseList(&list);
+
 	printf("list has %s cycle\n", hasCycle(&list) ? "" : "no");
 	printf("list middle is %d\n", getMiddle(&list));
 

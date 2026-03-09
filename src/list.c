@@ -156,40 +156,84 @@ listKey_t listTopBack(List_t* pList)
 void listAddAfter(List_t* pList, listKey_t afterKey, listKey_t newKey)
 {
 	if(pList != NULL)
+	{
+		if(pList->pHead == NULL)
 		{
-			if(pList->pHead == NULL)
-			{
-				printf("listAddAfter(): error: list head ptr is NULL\n");
-			}
-			else
-			{
-				listNode_t* pNewNode = (listNode_t*) malloc(sizeof(listNode_t));
-				pNewNode->data = newKey;
-
-				listNode_t* pTmpNode = pList->pHead;
-
-				while(pTmpNode->data != afterKey)
-					pTmpNode = pTmpNode->pNextNode;
-
-				pNewNode->pNextNode = pTmpNode->pNextNode;
-				pTmpNode->pNextNode = pNewNode;
-			}
+			printf("listAddAfter(): error: list head ptr is NULL\n");
 		}
 		else
 		{
-			printf("listAddAfter(): error: list ptr is NULL\n");
+			listNode_t* pNewNode = (listNode_t*) malloc(sizeof(listNode_t));
+			pNewNode->data = newKey;
+
+			listNode_t* pTmpNode = pList->pHead;
+
+			while(pTmpNode->data != afterKey)
+				pTmpNode = pTmpNode->pNextNode;
+
+			pNewNode->pNextNode = pTmpNode->pNextNode;
+			pTmpNode->pNextNode = pNewNode;
 		}
+	}
+	else
+	{
+		printf("listAddAfter(): error: list ptr is NULL\n");
+	}
 }
 
 
 /* Traverse — O(n) */
 void traverseList(List_t* pList)
 {
-	listNode_t* pTmpNode = pList->pHead;
-
-	while(pTmpNode != NULL)
+	if(pList != NULL)
 	{
-		printf("Data: %d\n", pTmpNode->data);
-		pTmpNode = pTmpNode->pNextNode;
+		if(pList->pHead == NULL)
+		{
+			printf("traverseList(): error: list head ptr is NULL\n");
+		}
+		else
+		{
+			listNode_t* pTmpNode = pList->pHead;
+
+			while(pTmpNode != NULL)
+			{
+				printf("Data: %d\n", pTmpNode->data);
+				pTmpNode = pTmpNode->pNextNode;
+			}
+		}
+	}
+	else
+	{
+		printf("traverseList(): error: list ptr is NULL\n");
+	}
+}
+
+void listReverse(List_t* pList)
+{
+	if(pList != NULL)
+	{
+		if(pList->pHead == NULL)
+		{
+			printf("listReverse(): error: list head ptr is NULL\n");
+		}
+		else
+		{
+			listNode_t* pNext = NULL;
+			listNode_t* pCurrent = pList->pHead;
+			listNode_t* pPrev = NULL;
+
+			while(pCurrent != NULL)
+			{
+				pNext = pCurrent->pNextNode;
+				pCurrent->pNextNode = pPrev;
+				pPrev = pCurrent;
+				pCurrent = pNext;
+			}
+			pList->pHead = pPrev;
+		}
+	}
+	else
+	{
+		printf("listReverse(): error: list ptr is NULL\n");
 	}
 }
