@@ -10,7 +10,7 @@
 
 #define STACK_MAX_SIZE  (16)
 
-typedef int stackKey_t;
+typedef char stackKey_t;
 
 /* Array based implementation */
 /* *********************************************** */

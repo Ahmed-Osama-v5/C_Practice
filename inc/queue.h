@@ -43,6 +43,7 @@ typedef struct linkedQueue
 typedef struct
 {
 	queueNode_t* pFront;
+	queueNode_t* pBack;
 	int size;
 }linkedQueue_t;
 

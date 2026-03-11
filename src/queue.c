@@ -102,7 +102,9 @@ void createLinkQueue(linkedQueue_t* pQueue)
 {
 	if(pQueue != NULL)
 	{
-
+		pQueue->pFront = NULL;
+		pQueue->pBack = NULL;
+		pQueue->size = 0;
 	}
 	else
 		printf("createLinkQueue() error: queue ptr is NULL\n");
@@ -113,7 +115,7 @@ int QueueLink_IsEmpty(linkedQueue_t* pQueue)
 	int retVal = 0;
 	if(pQueue != NULL)
 	{
-
+		retVal = (pQueue->size == 0) ? 1 : 0;
 	}
 	else
 		printf("QueueLink_IsEmpty() error: queue ptr is NULL\n");
@@ -126,7 +128,12 @@ queueKey_t QueuekLink_Front(linkedQueue_t* pQueue)
 	queueKey_t retVal = 0;
 	if(pQueue != NULL)
 	{
-
+		if(! QueueLink_IsEmpty(pQueue))
+		{
+			retVal = pQueue->pFront->data;
+		}
+		else
+			printf("QueuekLink_Front() error: queue is empty\n");
 	}
 	else
 		printf("QueuekLink_Front() error: queue ptr is NULL\n");
@@ -138,7 +145,31 @@ void QueueLink_Enqueue(linkedQueue_t* pQueue, queueKey_t key)
 {
 	if(pQueue != NULL)
 	{
+		if(pQueue->size < QUEUE_MAX_SIZE)
+		{
+			queueNode_t* pNew = (queueNode_t*) malloc(sizeof(queueNode_t));
+			if(pNew != NULL)
+			{
+				pNew->data = key;
+				pNew->pNextNode = NULL;
 
+				if(QueueLink_IsEmpty(pQueue))
+				{
+					pQueue->pFront = pNew;
+				}
+				else
+				{
+					pQueue->pBack->pNextNode = pNew;
+				}
+
+				pQueue->pBack = pNew;
+				pQueue->size++;
+			}
+			else
+				printf("QueueLink_Enqueue() error: couldn't create a new node\n");
+		}
+		else
+			printf("QueueLink_Enqueue() error: queue is full\n");
 	}
 	else
 		printf("QueueLink_Enqueue() error: queue ptr is NULL\n");
@@ -149,7 +180,22 @@ queueKey_t QueueLink_Dequeue(linkedQueue_t* pQueue)
 	queueKey_t retVal = 0;
 	if(pQueue != NULL)
 	{
+		if(! QueueLink_IsEmpty(pQueue))
+		{
+			queueNode_t* pTmp = pQueue->pFront;
+			retVal = pTmp->data;
+			pQueue->pFront = pQueue->pFront->pNextNode;
+			pQueue->size--;
 
+			if(pQueue->pFront == NULL)
+				pQueue->pBack = NULL;
+
+			free(pTmp);
+		}
+		else
+		{
+			printf("QueueLink_Dequeue() error: queue is empty\n");
+		}
 	}
 	else
 		printf("QueueLink_Dequeue() error: queue ptr is NULL\n");
