@@ -227,6 +227,9 @@ stackKey_t StackLink_Pop(linkedStack_t* pStack)
 			pStack->size--;
 
 			free(pTmpNode);
+
+			/* remove dangling pointer */
+			pTmpNode = NULL;
 		}
 		else
 			printf("StackLink_Pop(): error: stack is empty\n");

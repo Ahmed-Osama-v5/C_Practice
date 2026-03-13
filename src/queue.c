@@ -191,6 +191,9 @@ queueKey_t QueueLink_Dequeue(linkedQueue_t* pQueue)
 				pQueue->pBack = NULL;
 
 			free(pTmp);
+
+			/* remove dangling pointer */
+			pTmp = NULL;
 		}
 		else
 		{

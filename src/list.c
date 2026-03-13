@@ -51,6 +51,9 @@ void listPopFront(List_t* pList)
 			pList->pHead = pList->pHead->pNextNode;
 
 			free(pTmpNode);
+
+			/* remove dangling pointer */
+			pTmpNode = NULL;
 		}
 	}
 	else
@@ -118,6 +121,9 @@ void listPopBack(List_t* pList)
 		    listNode_t* pLastNode = pTmpNode->pNextNode;
 		    pTmpNode->pNextNode = NULL;
 			free(pLastNode);
+
+			/* remove dangling pointer */
+			pLastNode = NULL;
 		}
 	}
 	else
